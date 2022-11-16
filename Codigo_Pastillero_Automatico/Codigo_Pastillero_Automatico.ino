@@ -15,10 +15,10 @@
  */
 
 //PINES PASO A PASO
-#define IN1  32
-#define IN2  33
-#define IN3  25
-#define IN4  26
+#define IN1  2
+#define IN2  3
+#define IN3  4
+#define IN4  5
 
 //INTERVALO DE ESPERA ENTRE PASO Y PASO
 #define INTERVALO_ESPERA_MOTOR               2
@@ -45,20 +45,20 @@ int     Pasos_a_realizar_vuelta =            0;                                 
 #define ACTUALIZAR_LED_TEST(X)               digitalWrite(LED_TEST, X)
 
 //PINES BUZZER
-#define PIN_BUZZER                           27
+#define PIN_BUZZER                           9
 byte salida                                  = 230;
 byte entrada                                 = 0;
 
 //PINES BOTON
-#define PIN_BOTON                            14
+#define PIN_BOTON                            8
 int EstaApretado = HIGH;
 
 //LED ROJO
-#define PIN_LED_ROJO                         19                                 // LED ROJO
+#define PIN_LED_ROJO                         7                                 // LED ROJO
 #define CONFIG_LED_ROJO                      pinMode(PIN_LED_ROJO, OUTPUT)
 #define ACTUALIZAR_LED_ROJO(X)               digitalWrite(PIN_LED_ROJO, X)
 //LED VERDE
-#define PIN_LED_VERDE                        18                                 // LED VERDE
+#define PIN_LED_VERDE                        6                                 // LED VERDE
 #define CONFIG_LED_VERDE                     pinMode(PIN_LED_VERDE, OUTPUT)
 #define ACTUALIZAR_LED_VERDE(X)              digitalWrite(PIN_LED_VERDE, X)
 
@@ -66,7 +66,7 @@ int EstaApretado = HIGH;
  
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
@@ -113,8 +113,8 @@ void MoverMotorDelante()                                        //MOVIMIENTO DEL
   antMillis = millis();
 
   AvanzarUnPaso();
-  ACTUALIZAR_LED_VERDE(HIGH);
-  ACTUALIZAR_LED_ROJO (LOW);
+  ACTUALIZAR_LED_ROJO(HIGH);
+  ACTUALIZAR_LED_VERDE (LOW);
  
   Pasos_a_realizar_ida--;
 
@@ -138,7 +138,7 @@ void MoverMotorAtras()                                          //MOVIMIENTO DEL
   antMillis = millis();
  
   RetrocederUnPaso();
-  ACTUALIZAR_LED_VERDE(LOW);
+  ACTUALIZAR_LED_ROJO(LOW);
   ACTUALIZAR_LED_VERDE(HIGH);
 
   Pasos_a_realizar_vuelta--;

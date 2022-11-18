@@ -92,12 +92,45 @@ void loop()
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RecibirPasosMonitorSerial()                                //RECIBE EL DATO ENVIADO POR EL MONITOR SERIAL
   {
+
+  int Case = 0;
   if(!Serial.available()) return;
 
-  Pasos_recibidos = Serial.parseInt();
+  Case = Serial.parseInt();
 
-  Pasos_a_realizar_ida= Pasos_recibidos;
-  Pasos_a_realizar_vuelta = Pasos_recibidos;
+  switch (Case) {
+    case 1:
+        Pasos_a_realizar_ida= 1794;
+        Pasos_a_realizar_vuelta = 1794;
+        break;
+    case 2:
+        Pasos_a_realizar_ida= 1538;
+        Pasos_a_realizar_vuelta = 1538;
+        break;
+    case 3:
+        Pasos_a_realizar_ida= 1282;
+        Pasos_a_realizar_vuelta = 1282;
+        break;
+    case 4:
+        Pasos_a_realizar_ida= 1024;
+        Pasos_a_realizar_vuelta = 1024;
+        break;
+    case 5:
+        Pasos_a_realizar_ida= 768;
+        Pasos_a_realizar_vuelta = 768;
+        break;
+    case 6:
+        Pasos_a_realizar_ida= 512;
+        Pasos_a_realizar_vuelta = 512;
+        break;
+    case 7:
+        Pasos_a_realizar_ida= 256;
+        Pasos_a_realizar_vuelta = 256;
+        break;
+
+    default: 
+    break;
+  }
  
   while(Serial.available()) Serial.read();                       //VACIA EL BUFFER DE RECEPCION SERIE
   }
@@ -129,7 +162,7 @@ void MoverMotorAtras()                                          //MOVIMIENTO DEL
 
   if(Pasos_a_realizar_ida != 0 ) return;
 
-  if(EstaApretado == HIGH) return;
+  if(EstaApretado == HIGH)  return;
  
   if(!Pasos_a_realizar_vuelta)return;
 
